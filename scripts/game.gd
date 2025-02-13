@@ -118,7 +118,7 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	enemy_container.add_child(e)
 	#await get_tree().create_timer(1).timeout
 	#if e.is_shooting == true:
-	if e.name == "EnemyShooting" or e.name == "boss":
+	if e.type ==3 or e.type ==4: #"EnemyShooting" or e.name == "boss":
 		e.laser_shot.connect(_on_laser_shot)
 	pass # Replace with function body.
 	

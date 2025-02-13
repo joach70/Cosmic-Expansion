@@ -27,7 +27,7 @@ var wait_value: float = 4
 var rate_of_fire = 1.5
 var hp: int
 var boss: bool
-var teleport: bool
+var teleport: bool = false
 
 func _ready() -> void:
 	if type == 1:
@@ -52,13 +52,14 @@ func _ready() -> void:
 	if !teleport and !is_shooting:
 		stop = false
 		pass
-	while stop:
-		if teleport:
-			await get_tree().create_timer(1).timeout
-			teleport_func()
-		if is_shooting:
-			await get_tree().create_timer(rate_of_fire).timeout
-			shoot()
+	else:
+		while stop:
+			if teleport:
+				await get_tree().create_timer(1).timeout
+				teleport_func()
+			if is_shooting:
+				await get_tree().create_timer(rate_of_fire).timeout
+				shoot()
 		#if teleport==true and loop == 1:
 		#	await get_tree().create_timer(1).timeout
 		#	print("teleport")
