@@ -20,7 +20,8 @@ Currently only Linux is supported.
 9. ./cosmic_expansion.sh
 
 ## How Update to the newest version
-1. git clone git@github.com:Chimi70/Space-Expansion.git
+1. cd ~
+2. git clone git@github.com:Chimi70/Space-Expansion.git
 
 ## How uninstall
 1. cd ~
