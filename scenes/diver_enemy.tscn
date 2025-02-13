@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ktle1qkrciv"]
+
+[ext_resource type="PackedScene" uid="uid://pi6t1vbiapt2" path="res://scenes/enemy.tscn" id="1_lpy3t"]
+[ext_resource type="Texture2D" uid="uid://bjxexujq0io1s" path="res://assets/PNG/Enemies/enemyBlack5.png" id="2_w0ymk"]
+
+[node name="DiverEnemy" instance=ExtResource("1_lpy3t")]
+speed = 400
+type = 2
+points = 200
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_w0ymk")
+
+[node name="CollisionPolygon2D" parent="." index="1"]
+polygon = PackedVector2Array(7, 21, 15, 15, 24, -21, 16, -21, 5, -14, -5, -14, -16, -21, -24, -21, -14, 17, -7, 21)

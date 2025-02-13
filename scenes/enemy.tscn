@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://pi6t1vbiapt2"]
+
+[ext_resource type="Texture2D" uid="uid://dd4f8vk8wqpx" path="res://assets/PNG/Enemies/enemyBlack1.png" id="1_jri0m"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_oxu1i"]
+[ext_resource type="AudioStream" uid="uid://b7eeqplr0thhi" path="res://assets/Bonus/sfx_laser2.ogg" id="4_fxuw0"]
+[ext_resource type="AudioStream" uid="uid://cwc0xdh0jre0g" path="res://assets/Bonus/sfx_lose.ogg" id="5_6lxav"]
+
+[node name="Enemy" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_oxu1i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("1_jri0m")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-10, 13, 11, 13, 7, 24, 17, 26, 30, -10, 19, -28, 7, -22, -6, -22, -20, -26, -30, -9, -14, 26, -7, 24)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 56)
+scale = Vector2(0.65, 0.65)
+
+[node name="Muzzle" type="Marker2D" parent="."]
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="ExpodeSound" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_6lxav")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_fxuw0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

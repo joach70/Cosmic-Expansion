@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1gb07tvococx"]
+
+[ext_resource type="Texture2D" uid="uid://nedjimairs5l" path="res://assets/PNG/Lasers/laserRed01.png" id="1_482hl"]
+[ext_resource type="Script" path="res://scripts/laser.gd" id="1_gafow"]
+[ext_resource type="AudioStream" uid="uid://cfpx35bveg5cf" path="res://assets/Bonus/sfx_laser1.ogg" id="3_p0rg6"]
+[ext_resource type="AudioStream" uid="uid://b7eeqplr0thhi" path="res://assets/Bonus/sfx_laser2.ogg" id="4_6xpgm"]
+[ext_resource type="AudioStream" uid="uid://cwc0xdh0jre0g" path="res://assets/Bonus/sfx_lose.ogg" id="5_6hq2p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jxhgp"]
+radius = 4.0
+height = 44.0
+
+[node name="Laser" type="Area2D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_gafow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_482hl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_jxhgp")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 32.5)
+scale = Vector2(0.6, 0.55)
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_p0rg6")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_6xpgm")
+
+[node name="ExpodeSound" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_6hq2p")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
