@@ -1,5 +1,7 @@
 # Space-Expansion
-Really simple game created in [Godot Game Engine](https://godotengine.org/). It's evolution of this tutorial game [link](https://www.youtube.com/watch?v=QoNukqpolS8)Currently only Linux is supported.
+Really simple game created in [Godot Game Engine](https://godotengine.org/). It's evolution of this tutorial game [link](https://www.youtube.com/watch?v=QoNukqpolS8) 
+Currently only Linux is supported.
+
 ## Screenshot
 ![](Screenshot.png)
 
