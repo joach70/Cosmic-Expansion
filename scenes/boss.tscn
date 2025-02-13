@@ -5,7 +5,6 @@
 
 [node name="boss" instance=ExtResource("1_3dms8")]
 type = 4
-points = 1000
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.8, 0.8)

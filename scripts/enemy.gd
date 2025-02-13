@@ -11,39 +11,29 @@ signal laser_shot(laser_scene, location, start_rotation, y_movement, x_movement)
 enum EnemyType {NORMAL=1, SPEED=2, SHOOTING=3, BOSS=4}
 var boss_pos_x = [400, 960, 1520]
 var boss_pos_y = [700,250]#[-300, -600]
-@export var speed = 150
+
+# Export
 @export var type: EnemyType = EnemyType.NORMAL
 @export var level = 1
-@export var points = 100
-#@export var y_movement := false
+
+# On ready
 @onready var muzzle: Marker2D = $Muzzle
 @onready var explode_sound = $SFX/ExpodeSound
 @onready var hit_sound = $SFX/HitSound
 
 var is_waiting = true
 var is_shooting = false
-var move = 100
-var wait_value: float = 4
+var speed: int
+var move = 100 # change direction
+var time_to_change_direction: float = 4
 var rate_of_fire = 1.5
 var hp: int
-var boss: bool
+var boss: bool = false
+var points: int
 var teleport: bool = false
 
 func _ready() -> void:
-	if type == 1:
-		hp = 2
-	if type == 2:
-		hp = 1
-	if type == 3:
-		hp = 5
-		is_shooting = true
-	if type == 4:
-		boss = true
-		hp = 10
-		speed = 0
-		is_shooting = true
-		teleport = true
-	# For all
+	setup_enemy()
 	hp *= level
 	points *= level
 	# Routine
@@ -60,18 +50,31 @@ func _ready() -> void:
 			if is_shooting:
 				await get_tree().create_timer(rate_of_fire).timeout
 				shoot()
-		#if teleport==true and loop == 1:
-		#	await get_tree().create_timer(1).timeout
-		#	print("teleport")
-		#	await get_tree().create_timer(1).timeout
-		#	teleport_func()
-		#if is_shooting:
-		#	await get_tree().create_timer(rate_of_fire).timeout
-		#	print("fire")
-		#	#shoot()
-		#loop += 1
-		#loop = loop% 6
-		
+
+func setup_enemy():
+	match type:
+		1:
+			hp = 2
+			points = 50
+			speed = 150
+		2:
+			hp = 1
+			points = 100
+			speed = 300
+		3:
+			hp = 2
+			points = 100
+			is_shooting = true
+			speed = 50
+		4:
+			boss = true
+			points = 500
+			hp = 10
+			speed = 0
+			is_shooting = true
+			teleport = true
+		_:
+			error("Unknown Enemy Type", scene_file_path)
 
 func teleport_func():
 	var change:bool = false
@@ -92,7 +95,7 @@ func teleport_func():
 
 func change_direction(): 
 	is_waiting = false
-	await get_tree().create_timer(wait_value).timeout
+	await get_tree().create_timer(time_to_change_direction).timeout
 	#if move>0:
 	move *= -1
 	#else:
@@ -121,11 +124,14 @@ func _physics_process(delta: float) -> void:
 func die():
 	# Sound
 	# remove enemy
-	queue_free()
+	if type == 4:
+		boss_dead()
+	else:
+		queue_free()		
 
 func _on_body_entered(body: Node2D) -> void:
 	# Colision with player
-	if body is Player:
+	if body is Player and type != 4:
 		body.die()
 		die()
 
@@ -137,8 +143,17 @@ func take_damage(amount):
 		die()
 	else:
 		hit.emit()
-		print("got it")
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	# kill when go outside of screen
 	queue_free()
+
+func boss_dead():
+	queue_free()
+	
+func error(message:String,info:String):
+	print("---ERROR---")
+	print(message)
+	print("INFO: ",info)
+	print("---ERROR---")
+	

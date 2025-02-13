@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bwweikph6gdtu" path="res://assets/PNG/Enemies/enemyBlack3.png" id="2_k6ite"]
 
 [node name="EnemyShooting" instance=ExtResource("1_p1t5v")]
-speed = 50
 type = 3
 
 [node name="Sprite2D" parent="." index="0"]

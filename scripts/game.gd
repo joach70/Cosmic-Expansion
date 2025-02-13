@@ -1,11 +1,15 @@
 extends Node2D
 
-var enemy_scenes: Array[PackedScene] = [\
-preload("res://scenes/diver_enemy.tscn"),preload("res://scenes/enemy.tscn"),\
-preload("res://scenes/enemy_shooting.tscn")
-]
+var enemy_scenes: Array[PackedScene] = [
+	preload("res://scenes/diver_enemy.tscn"),
+	preload("res://scenes/enemy.tscn"),
+	preload("res://scenes/enemy_shooting.tscn")]
+	
+var enemy_boss: Array[PackedScene] = [preload("res://scenes/boss.tscn")]
 
 # get player spawn location
+@export var turn = 60 # time before I boss
+@export var wait_boss = 5 # time how long wait boss
 @onready var player_spawn_pos = $PlayerSpawnPos
 @onready var laser_container = $LaserContainer
 @onready var timer = $EnemySpawnTimer
@@ -39,7 +43,6 @@ func _ready():
 	else:
 		high_score = 0
 		save_game()
-
 	# set score for start as 0
 	score = 0
 	# get player
@@ -55,6 +58,16 @@ func _ready():
 	#enemy.laser_shot.connect(_on_enemy_laser_shot)
 	# connect player killed signal
 	player.killed.connect(_on_player_killed)
+
+func spawner():
+	await get_tree().create_timer(turn).timeout
+	timer.stop()
+	await get_tree().create_timer(wait_boss).timeout
+	spawn_enemy(enemy_boss[0].instantiate())
+	
+func boss_dead():
+	timer.start()
+	spawner()
 
 func save_game():
 	var save_file = FileAccess.open("user://save.data", FileAccess.WRITE)
@@ -108,19 +121,25 @@ func _on_laser_shot(type, laser_scene, location, start_rotation, y_movement, x_m
 		#laser_sound.play()
 
 func _on_enemy_spawn_timer_timeout() -> void:
-	# spawn enemy
-	var e = enemy_scenes.pick_random().instantiate()
-	e.global_position = Vector2(randf_range(50, 1920-50), -50)
+	# random enemy
+	var size = enemy_scenes.size()
+	var random = randi_range(0,size-1)
+	#var e = enemy_scenes.pick_random().instantiate()
+	spawn_enemy(enemy_scenes[random].instantiate())
+	
+func spawn_enemy(enemy) -> void:
+	var margin: int = 100
+	enemy.global_position = Vector2(randf_range(margin, 1920-margin), -50)
 	# connect killed signal from enemy script -> run function
-	e.killed.connect(_on_enemy_killed)
-	e.hit.connect(_on_enemy_hit)
+	enemy.killed.connect(_on_enemy_killed)
+	enemy.hit.connect(_on_enemy_hit)
 	#e.laser_shot.connect(_on_enemy_laser_shot)
-	enemy_container.add_child(e)
+	enemy_container.add_child(enemy)
 	#await get_tree().create_timer(1).timeout
-	#if e.is_shooting == true:
-	if e.type ==3 or e.type ==4: #"EnemyShooting" or e.name == "boss":
-		e.laser_shot.connect(_on_laser_shot)
-	pass # Replace with function body.
+	if enemy.type ==3 or enemy.type ==4:
+		enemy.laser_shot.connect(_on_laser_shot)
+		if enemy.type == 4:
+			enemy.boss_dead.connect(boss_dead())
 	
 func _on_enemy_killed(points):
 	score += points
