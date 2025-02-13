@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmn070gn7u1c3"]
+
+[ext_resource type="PackedScene" uid="uid://dvlbbugvuvcl2" path="res://scenes/player.tscn" id="1_njwyy"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_uwu70"]
+[ext_resource type="AudioStream" uid="uid://cfpx35bveg5cf" path="res://assets/Bonus/sfx_laser1.ogg" id="4_8rqek"]
+[ext_resource type="PackedScene" uid="uid://cas5uqnnbif70" path="res://scenes/hud.tscn" id="4_s1wce"]
+[ext_resource type="AudioStream" uid="uid://b7eeqplr0thhi" path="res://assets/Bonus/sfx_laser2.ogg" id="5_26b3j"]
+[ext_resource type="PackedScene" uid="uid://xyg6owjhenrm" path="res://scenes/game_over_screen.tscn" id="5_lmgw7"]
+[ext_resource type="AudioStream" uid="uid://cwc0xdh0jre0g" path="res://assets/Bonus/sfx_lose.ogg" id="6_8dn82"]
+[ext_resource type="Texture2D" uid="uid://dlftua3m8ndcs" path="res://assets/Backgrounds/purple.png" id="6_uudt0"]
+[ext_resource type="Texture2D" uid="uid://c3h8urmwikxfm" path="res://assets/PNG/Effects/speed.png" id="7_5rfn3"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_764in"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(910, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = -1000.0
+initial_velocity_max = -1000.0
+angular_velocity_min = 0.999984
+angular_velocity_max = 0.999984
+gravity = Vector3(0, 0, 0)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_uwu70")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="LaserSound" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_8rqek")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_26b3j")
+
+[node name="ExpodeSound" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_8dn82")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UILayer" instance=ExtResource("4_s1wce")]
+
+[node name="GameOverScreen" parent="UILayer" instance=ExtResource("5_lmgw7")]
+visible = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(0, 960)
+
+[node name="PurpleStars" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+texture = ExtResource("6_uudt0")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1920, 1080)
+
+[node name="StarParticleEffect" type="GPUParticles2D" parent="."]
+position = Vector2(910, -50)
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_764in")
+texture = ExtResource("7_5rfn3")
+lifetime = 1.25
+preprocess = 5.0
+visibility_rect = Rect2(-271, 49, 2, 2)
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="PlayerSpawnPos" type="Marker2D" parent="."]
+position = Vector2(910, 850)
+
+[node name="LaserContainer" type="Node2D" parent="."]
+
+[node name="EnemyContainer" type="Node2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_njwyy")]
+position = Vector2(-319, 1164)
+
+[node name="markers" type="Marker2D" parent="."]
+position = Vector2(910, 850)
+
+[node name="Marker2D" type="Marker2D" parent="markers"]
+
+[node name="Marker2D2" type="Marker2D" parent="markers"]
+position = Vector2(600, -600)
+
+[node name="Marker2D3" type="Marker2D" parent="markers"]
+position = Vector2(600, -300)
+
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]
