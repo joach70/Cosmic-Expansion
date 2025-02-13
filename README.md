@@ -1,2 +1,0 @@
-# Space-Expansion
-![](Screenshot.png)
