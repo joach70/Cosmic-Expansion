@@ -29,17 +29,22 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Enemy:
-		# delate laser
-		area.take_damage(damage)
-		queue_free()
+		if type=="enemy":
+			# If enemy hit enemy
+			pass
+		else:
+			# If enemy hit not enemy (currently nothing)
+			area.take_damage(damage)
+			queue_free()
 	if area is Laser:
+		# If laser hit laser
 		if (type=="player" and area.type == "enemy") or (type=="enemy" and area.type =="player"):
+			# Only laser from diferent team will be explode
 			hit_sound.play()
 			area.queue_free()
 			queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
-	# Hit Body
 	if body is Player:
 		# Hit player
 		body.die()
