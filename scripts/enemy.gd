@@ -6,11 +6,12 @@ signal killed(points)
 signal hit
 
 const laser_scene = preload("res://scenes/laser.tscn")
-signal laser_shot(laser_scene, location, start_rotation, y_movement, x_movement)
+signal laser_shot()#laser_scene, location, start_rotation, y_movement, x_movement)
+signal boss_dead()
 
 enum EnemyType {NORMAL=1, SPEED=2, SHOOTING=3, BOSS=4}
 var boss_pos_x = [400, 960, 1520]
-var boss_pos_y = [700,250]#[-300, -600]
+var boss_pos_y = [600,200]#[-300, -600]
 
 # Export
 @export var type: EnemyType = EnemyType.NORMAL
@@ -20,6 +21,7 @@ var boss_pos_y = [700,250]#[-300, -600]
 @onready var muzzle: Marker2D = $Muzzle
 @onready var explode_sound = $SFX/ExpodeSound
 @onready var hit_sound = $SFX/HitSound
+@onready var teleport_sound = $SFX/Teleport
 
 var is_waiting = true
 var is_shooting = false
@@ -45,7 +47,7 @@ func _ready() -> void:
 	else:
 		while stop:
 			if teleport:
-				await get_tree().create_timer(1).timeout
+				await get_tree().create_timer(1.5).timeout
 				teleport_func()
 			if is_shooting:
 				await get_tree().create_timer(rate_of_fire).timeout
@@ -69,7 +71,7 @@ func setup_enemy():
 		4:
 			boss = true
 			points = 500
-			hp = 10
+			hp = 5 #15
 			speed = 0
 			is_shooting = true
 			teleport = true
@@ -92,6 +94,7 @@ func teleport_func():
 	change = false
 	global_position.x = boss_pos_x[x-1]
 	global_position.y = boss_pos_y[y-1]
+	teleport_sound.play()
 
 func change_direction(): 
 	is_waiting = false
@@ -125,7 +128,8 @@ func die():
 	# Sound
 	# remove enemy
 	if type == 4:
-		boss_dead()
+		boss_dead.emit()
+		queue_free()
 	else:
 		queue_free()		
 
@@ -148,12 +152,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	# kill when go outside of screen
 	queue_free()
 
-func boss_dead():
-	queue_free()
-	
 func error(message:String,info:String):
 	print("---ERROR---")
 	print(message)
 	print("INFO: ",info)
 	print("---ERROR---")
-	

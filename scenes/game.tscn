@@ -66,7 +66,6 @@ visibility_rect = Rect2(-271, 49, 2, 2)
 
 [node name="EnemySpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
 
 [node name="PlayerSpawnPos" type="Marker2D" parent="."]
 position = Vector2(910, 850)
