@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://pi6t1vbiapt2"]
+[gd_scene load_steps=6 format=3 uid="uid://pi6t1vbiapt2"]
 
 [ext_resource type="Texture2D" uid="uid://dd4f8vk8wqpx" path="res://assets/PNG/Enemies/enemyBlack1.png" id="1_jri0m"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_oxu1i"]
 [ext_resource type="AudioStream" uid="uid://b7eeqplr0thhi" path="res://assets/Bonus/sfx_laser2.ogg" id="4_fxuw0"]
 [ext_resource type="AudioStream" uid="uid://cwc0xdh0jre0g" path="res://assets/Bonus/sfx_lose.ogg" id="5_6lxav"]
+[ext_resource type="AudioStream" uid="uid://8k3yjyx2mc4f" path="res://assets/Bonus/teleport.mp3" id="5_btvyx"]
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 2
@@ -31,6 +32,9 @@ stream = ExtResource("5_6lxav")
 
 [node name="HitSound" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("4_fxuw0")
+
+[node name="Teleport" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("5_btvyx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

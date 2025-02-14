@@ -7,9 +7,12 @@ var enemy_scenes: Array[PackedScene] = [
 	
 var enemy_boss: Array[PackedScene] = [preload("res://scenes/boss.tscn")]
 
-# get player spawn location
-@export var turn = 60 # time before I boss
+# Export
+@export var turn1 = 1 # enemy before first boss
 @export var wait_boss = 5 # time how long wait boss
+@export var wait_enemy = 2.5 # time between enemy respawn
+
+# On ready
 @onready var player_spawn_pos = $PlayerSpawnPos
 @onready var laser_container = $LaserContainer
 @onready var timer = $EnemySpawnTimer
@@ -21,18 +24,13 @@ var enemy_boss: Array[PackedScene] = [preload("res://scenes/boss.tscn")]
 @onready var laser_sound = $SFX/LaserSound
 @onready var hit_sound = $SFX/HitSound
 @onready var explode_sound = $SFX/ExpodeSound
-#@onready var enemy_boss: Enemy = $Enemy_boss
-#@onready var enemy_shooting: Enemy = $EnemyShooting
-#const enemy_shooting = preload("res://scenes/enemy_shooting.tscn")
 
 var player = null
 var score := 0:
 	set(value):
 		score = value
 		hud.score = score
-
 var high_score
-
 var scroll_speed = 100
 
 func _ready():
@@ -58,16 +56,17 @@ func _ready():
 	#enemy.laser_shot.connect(_on_enemy_laser_shot)
 	# connect player killed signal
 	player.killed.connect(_on_player_killed)
+	spawner()
 
 func spawner():
-	await get_tree().create_timer(turn).timeout
-	timer.stop()
-	await get_tree().create_timer(wait_boss).timeout
-	spawn_enemy(enemy_boss[0].instantiate())
-	
-func boss_dead():
-	timer.start()
-	spawner()
+	var x:int = 1;
+	while x>0:
+		for n in turn1:
+			var enemy = choose_random_enemy()
+			spawn_enemy(enemy.instantiate())
+			await get_tree().create_timer(wait_enemy).timeout
+		spawn_enemy(enemy_boss[0].instantiate())
+		x-=2
 
 func save_game():
 	var save_file = FileAccess.open("user://save.data", FileAccess.WRITE)
@@ -120,12 +119,10 @@ func _on_laser_shot(type, laser_scene, location, start_rotation, y_movement, x_m
 		# sound
 		#laser_sound.play()
 
-func _on_enemy_spawn_timer_timeout() -> void:
-	# random enemy
+func choose_random_enemy() -> PackedScene:
 	var size = enemy_scenes.size()
 	var random = randi_range(0,size-1)
-	#var e = enemy_scenes.pick_random().instantiate()
-	spawn_enemy(enemy_scenes[random].instantiate())
+	return enemy_scenes[random]
 	
 func spawn_enemy(enemy) -> void:
 	var margin: int = 100
@@ -139,8 +136,13 @@ func spawn_enemy(enemy) -> void:
 	if enemy.type ==3 or enemy.type ==4:
 		enemy.laser_shot.connect(_on_laser_shot)
 		if enemy.type == 4:
-			enemy.boss_dead.connect(boss_dead())
-	
+			pass
+			enemy.boss_dead.connect(_on_boss_killed)
+
+func _on_boss_killed():
+	print("Boss Desktroyed")
+	spawner()
+
 func _on_enemy_killed(points):
 	score += points
 	hit_sound.play()
