@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://6xrg25hckw61"]
+
+[ext_resource type="PackedScene" uid="uid://opbtskmt4ajc" path="res://scenes/boss_2.tscn" id="1_rlih8"]
+[ext_resource type="Texture2D" uid="uid://1x71h01ep88g" path="res://assets/PNG/ufoRed.png" id="2_odcui"]
+
+[node name="boss_3" instance=ExtResource("1_rlih8")]
+level = 3
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_odcui")

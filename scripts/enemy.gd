@@ -36,14 +36,11 @@ var teleport: bool = false
 
 func _ready() -> void:
 	setup_enemy()
-	hp *= level
-	points *= level
 	# Routine
 	var stop:bool = true
 	var loop:int = 1
 	if !teleport and !is_shooting:
 		stop = false
-		pass
 	else:
 		while stop:
 			if teleport:
@@ -77,6 +74,8 @@ func setup_enemy():
 			teleport = true
 		_:
 			error("Unknown Enemy Type", scene_file_path)
+	hp *= level
+	points *= level
 
 func teleport_func():
 	var change:bool = false
@@ -89,8 +88,6 @@ func teleport_func():
 		y = randi_range(0,y_array_size)%y_array_size
 		if (boss_pos_x[x-1]!= global_position.x or boss_pos_y[y-1]!= global_position.y):
 			change = true
-		else:
-			print("False")
 	change = false
 	global_position.x = boss_pos_x[x-1]
 	global_position.y = boss_pos_y[y-1]
@@ -106,12 +103,38 @@ func change_direction():
 	is_waiting = true
 
 func shoot():
-	#is_shooting = true
+	#func _on_laser_shot(type, laser_scene, location, start_rotation, y_movement, x_movement):
 	var location = muzzle.global_position + Vector2(0,-10)
-	if type==4: # Boss is a little bigger
-		laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,50),0, -1, 0)
+	if type==4:
+		if level==1:
+			laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,50),180, -1, 0)
+		if level==2:
+			for n in 2:
+				# Front
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(30,30),-210, -0.8, -0.5)
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,50),180, -1, 0)
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(-30,30),210, -0.8, 0.5)
+				# Side
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(50,0),-90, 0, 1)
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(-50,0),90, 0, -1)
+				await get_tree().create_timer(0.2).timeout
+		if level==3:
+			for n in 5:
+				# Front
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(30,30),-210, -0.8, -0.5)
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,50),180, -1, 0)
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(-30,30),210, -0.8, 0.5)
+				# Side
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(-50,0),-90, 0, 1)
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(50,0),90, 0, -1)
+				# Back
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(30,-30),30, 0.8, -0.5)
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,-50),180, 1, 0)
+				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(-30,-30),-30, 0.8, 0.5)
+				rotation += 5
+				await get_tree().create_timer(0.3).timeout
 	else:
-		laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,40),0, -1, 0)
+		laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,40),180, -1, 0)
 		#is_shooting = false
 
 func _physics_process(delta: float) -> void:

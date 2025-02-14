@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvlbbugvuvcl2"]
+[gd_scene load_steps=6 format=3 uid="uid://dvlbbugvuvcl2"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7ds8d"]
 [ext_resource type="Texture2D" uid="uid://ecobna3ik7yc" path="res://assets/PNG/playerShip1_blue.png" id="1_n2u3g"]
+[ext_resource type="AudioStream" uid="uid://gfffvxqboi4r" path="res://assets/Bonus/level_up.ogg" id="3_oupq8"]
+[ext_resource type="AudioStream" uid="uid://b43selmjnn88p" path="res://assets/Bonus/sfx_shieldDown.ogg" id="4_c7hfd"]
+[ext_resource type="AudioStream" uid="uid://bocljp381ierl" path="res://assets/Bonus/sfx_shieldUp.ogg" id="4_svp72"]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_7ds8d")
+autoshot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.8, 0.8)
@@ -18,3 +22,15 @@ polygon = PackedVector2Array(-12.8571, -54.2857, -17.1429, -18.5714, -48.5714, 2
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(0, -53)
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="LevelUp" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("3_oupq8")
+volume_db = -15.0
+
+[node name="ShieldUp" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_svp72")
+
+[node name="ShieldDown" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_c7hfd")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://opbtskmt4ajc"]
+
+[ext_resource type="PackedScene" uid="uid://pi6t1vbiapt2" path="res://scenes/enemy.tscn" id="1_l1fts"]
+[ext_resource type="Texture2D" uid="uid://80uxyukjj6uo" path="res://assets/PNG/ufoGreen.png" id="2_4at3u"]
+
+[node name="boss_2" instance=ExtResource("1_l1fts")]
+type = 4
+level = 2
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_4at3u")
