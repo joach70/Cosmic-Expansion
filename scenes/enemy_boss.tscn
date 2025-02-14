@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://85dh46qjc6y5" path="res://assets/PNG/Enemies/enemyRed1.png" id="2_niu42"]
 
 [node name="Enemy_boss" instance=ExtResource("1_g8bnk")]
-is_shooting = true
+type = 4
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_niu42")

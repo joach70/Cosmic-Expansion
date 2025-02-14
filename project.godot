@@ -67,3 +67,7 @@ reset={
 3d_physics/layer_2="enemy"
 2d_physics/layer_3="laser"
 3d_physics/layer_3="laser"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

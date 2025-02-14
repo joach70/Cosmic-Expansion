@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://mpu1cm0g1svt"]
+
+[ext_resource type="PackedScene" uid="uid://6lhn4btwggdc" path="res://scenes/diver_enemy_2.tscn" id="1_p4ktd"]
+[ext_resource type="Texture2D" uid="uid://bcccrlxiy34mb" path="res://assets/PNG/Enemies/enemyGreen4.png" id="2_p6ali"]
+
+[node name="diver_enemy_3" instance=ExtResource("1_p4ktd")]
+level = 3
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_p6ali")

@@ -1,16 +1,38 @@
 extends Node2D
 
-var enemy_scenes: Array[PackedScene] = [
+var enemy_scenes1: Array[PackedScene] = [
 	preload("res://scenes/diver_enemy.tscn"),
 	preload("res://scenes/enemy.tscn"),
 	preload("res://scenes/enemy_shooting.tscn")]
-	
-var enemy_boss: Array[PackedScene] = [preload("res://scenes/boss.tscn")]
+var enemy_scenes2: Array[PackedScene] = [
+	preload("res://scenes/diver_enemy_2.tscn"),
+	preload("res://scenes/enemy_2.tscn"),
+	preload("res://scenes/enemy_shooting_2.tscn")]
+var enemy_scenes3: Array[PackedScene] = [
+	preload("res://scenes/diver_enemy_3.tscn"),
+	preload("res://scenes/enemy_3.tscn"),
+	preload("res://scenes/enemy_shooting_3.tscn")]
+var enemy_boss: Array[PackedScene] = [
+	preload("res://scenes/boss.tscn"),
+	preload("res://scenes/boss_2.tscn"),
+	preload("res://scenes/boss_3.tscn")]
 
 # Export
-@export var turn1 = 1 # enemy before first boss
-@export var wait_boss = 5 # time how long wait boss
-@export var wait_enemy = 2.5 # time between enemy respawn
+# 1
+@export var turn1:int = 20 # enemy before first boss
+@export var wait_enemy1 = 2.5
+# 2
+@export var turn2 = 30 # enemy before first boss
+@export var wait_enemy2 = 1.75
+# 3
+@export var turn3 = 60 # enemy before first boss
+@export var wait_enemy3 = 1.5
+# 4
+@export var turn4 = 60 # enemy before first boss
+@export var wait_enemy4 = 1
+# All
+@export var wait_boss = 10 # time how long wait boss
+@export var turn = 1 # start level
 
 # On ready
 @onready var player_spawn_pos = $PlayerSpawnPos
@@ -26,10 +48,14 @@ var enemy_boss: Array[PackedScene] = [preload("res://scenes/boss.tscn")]
 @onready var explode_sound = $SFX/ExpodeSound
 
 var player = null
-var score := 0:
+var score: int = 0:
 	set(value):
 		score = value
 		hud.score = score
+var shield: String = "Active":
+	set(value):
+		shield = value
+		hud.shield = shield
 var high_score
 var scroll_speed = 100
 
@@ -51,22 +77,53 @@ func _ready():
 	player.global_position = player_spawn_pos.global_position
 	# connect player laser shoot signal to function
 	player.laser_shot.connect(_on_laser_shot)
+	player.shield_changed.connect(_player_shield)
 	#enemy_boss.laser_shot.connect(_on_laser_shot)
 	#enemy_shooting.laser_shot.connect(_on_laser_shot)
 	#enemy.laser_shot.connect(_on_enemy_laser_shot)
 	# connect player killed signal
+	# ---
+	# Command line setup
+	var args = OS.get_cmdline_args()
+	for arg in args:
+		if arg.find("--turn=") == 0:
+			turn = int(arg.split("=")[1])
+	# ---
+	if turn != 1:
+		for n in turn-1:
+			player.level_up()
 	player.killed.connect(_on_player_killed)
 	spawner()
 
+func _player_shield(text:String):
+	shield = text
+
 func spawner():
+	# Repeat Break
+	await get_tree().create_timer(2).timeout
 	var x:int = 1;
-	while x>0:
-		for n in turn1:
-			var enemy = choose_random_enemy()
-			spawn_enemy(enemy.instantiate())
-			await get_tree().create_timer(wait_enemy).timeout
-		spawn_enemy(enemy_boss[0].instantiate())
-		x-=2
+	var repeat_value: int = 1
+	var wait_enemy: int
+	if turn == 1:#while x>0:
+		repeat_value = turn1
+		wait_enemy = wait_enemy1
+	elif turn == 2:
+		repeat_value = turn2
+		wait_enemy = wait_enemy2
+	elif turn == 3:
+		repeat_value = turn3
+		wait_enemy = wait_enemy3
+	elif turn >= 3:
+		repeat_value = turn4
+		wait_enemy = wait_enemy4
+	for n in repeat_value:
+		var enemy = choose_random_enemy(turn)
+		spawn_enemy(enemy.instantiate())
+		await get_tree().create_timer(wait_enemy).timeout
+	if turn >=4:
+		spawn_enemy(enemy_boss[2].instantiate())
+	else:
+		spawn_enemy(enemy_boss[turn-1].instantiate())
 
 func save_game():
 	var save_file = FileAccess.open("user://save.data", FileAccess.WRITE)
@@ -89,7 +146,7 @@ func _process(delta: float):
 	#	pb.scroll_offset.y = 0
 	#print(pb.scroll_offset.y)
 
-func _on_laser_shot(type, laser_scene, location, start_rotation, y_movement, x_movement):
+func _on_laser_shot(type, laser_scene, location, start_rotation, y_movement:float, x_movement:float):
 	# create laser
 	var laser = laser_scene.instantiate()
 	# set laser position
@@ -103,27 +160,20 @@ func _on_laser_shot(type, laser_scene, location, start_rotation, y_movement, x_m
 		laser.type = "player"
 	if type == "enemy":
 		laser.type = "enemy"
-	# sound
-	#laser_sound.play()
 
-#func _on_enemy_laser_shot(laser_scene, location, start_rotation, y_movement, x_movement):
-		# create laser
-	#var laser = laser_scene.instantiate()
-		# set laser position
-	#laser.global_position = location
-	#laser.start_rotation = start_rotation
-	#laser.x_movement = x_movement
-	#laser.y_movement = y_movement
-		# add as child of laser_container
-	#laser_container.add_child(laser)
-		# sound
-		#laser_sound.play()
-
-func choose_random_enemy() -> PackedScene:
+func choose_random_enemy(turn:int) -> PackedScene:
+	var enemy_scenes
+	if turn == 1: enemy_scenes = enemy_scenes1
+	elif turn == 2: enemy_scenes = enemy_scenes2
+	elif turn == 3: enemy_scenes = enemy_scenes3
+	elif turn >= 4: enemy_scenes = enemy_scenes3
+	else:
+		print("Error while spawning")
+		enemy_scenes = enemy_scenes1
 	var size = enemy_scenes.size()
 	var random = randi_range(0,size-1)
 	return enemy_scenes[random]
-	
+
 func spawn_enemy(enemy) -> void:
 	var margin: int = 100
 	enemy.global_position = Vector2(randf_range(margin, 1920-margin), -50)
@@ -133,14 +183,18 @@ func spawn_enemy(enemy) -> void:
 	#e.laser_shot.connect(_on_enemy_laser_shot)
 	enemy_container.add_child(enemy)
 	#await get_tree().create_timer(1).timeout
+	# Shooting
 	if enemy.type ==3 or enemy.type ==4:
 		enemy.laser_shot.connect(_on_laser_shot)
+		# Teleport
 		if enemy.type == 4:
-			pass
 			enemy.boss_dead.connect(_on_boss_killed)
 
 func _on_boss_killed():
 	print("Boss Desktroyed")
+	turn+=1
+	if player.alive:
+		player.level_up()
 	spawner()
 
 func _on_enemy_killed(points):
@@ -148,8 +202,6 @@ func _on_enemy_killed(points):
 	hit_sound.play()
 	if score > high_score:
 		high_score = score
-	if score == 500 or score == 1000:
-		player.level_up()
 
 func _on_enemy_hit():
 	pass

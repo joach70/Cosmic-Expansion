@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cas5uqnnbif70"]
+[gd_scene load_steps=5 format=3 uid="uid://cas5uqnnbif70"]
 
 [ext_resource type="FontFile" uid="uid://cgnabov1h1k6n" path="res://assets/Bonus/kenvector_future.ttf" id="1_6sklg"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="1_xey6k"]
@@ -6,6 +6,10 @@
 [sub_resource type="LabelSettings" id="LabelSettings_ic35r"]
 font = ExtResource("1_6sklg")
 font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_n3k0g"]
+font = ExtResource("1_6sklg")
+font_size = 24
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -20,9 +24,25 @@ script = ExtResource("1_xey6k")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 23.0
+offset_bottom = 54.0
 grow_horizontal = 2
 text = "SCORE: 9999"
 label_settings = SubResource("LabelSettings_ic35r")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Shield" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -323.0
+offset_top = -70.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Shield: Active"
+label_settings = SubResource("LabelSettings_n3k0g")
 horizontal_alignment = 1
 vertical_alignment = 1
