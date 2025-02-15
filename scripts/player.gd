@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-signal laser_shot#()#type, laser_scene, location, start_rotation, y_movement, x_movement)
+signal laser_shot
 signal killed
 signal shield_changed
 
@@ -12,8 +12,7 @@ signal shield_changed
 @export var shield:bool = true
 
 @onready var muzzle = $Muzzle
-
-# add Muzzle - wylot lufy 
+ 
 const laser_scene = preload("res://scenes/laser.tscn")
 @onready var level_up_sound = $SFX/LevelUp
 @onready var shield_up_sound = $SFX/ShieldUp
@@ -53,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	# Limit player movement
 	global_position = global_position.clamp(Vector2.ZERO, get_viewport_rect().size)
-	
+
 func shoot():
 	# emits shoot signal
 	if level == 1:
@@ -87,13 +86,11 @@ func shoot():
 		var x
 		var angle
 		if shoot_value%2==0:#or first_shot==true):
-			#print("odd")
 			x=0
 			angle = 0
 			laser_shot.emit("player", laser_scene, muzzle.global_position,angle, 1, x)
 			shoot_value +=1
 		else:
-			#print("not odd")
 			var y:float
 			x=0.5
 			y = 0.8 
@@ -107,16 +104,6 @@ func shoot():
 					y=1
 				if n==1:
 					y-=0.2
-		#var multiplayer := 2
-		#var y = 3
-		#var angle = -45
-		#for n in 7:
-			#await get_tree().create_timer(0.01).timeout
-		#	laser_shot.emit("player", laser_scene, muzzle.global_position,angle, 1, y)
-		#	angle +=15
-		#	y-=1
-		#await get_tree().create_timer(rate_of_fire/2).timeout
-		#laser_shot.emit("player", laser_scene, muzzle.global_position,0, 1, 0)
 
 func die():
 	if god_mode:

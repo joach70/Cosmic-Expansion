@@ -103,7 +103,6 @@ func change_direction():
 	is_waiting = true
 
 func shoot():
-	#func _on_laser_shot(type, laser_scene, location, start_rotation, y_movement, x_movement):
 	var location = muzzle.global_position + Vector2(0,-10)
 	if type==4:
 		if level==1:
@@ -135,7 +134,6 @@ func shoot():
 				await get_tree().create_timer(0.3).timeout
 	else:
 		laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,40),180, -1, 0)
-		#is_shooting = false
 
 func _physics_process(delta: float) -> void:
 	global_position.y += speed * delta

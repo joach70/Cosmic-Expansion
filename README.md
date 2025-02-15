@@ -1,32 +1,57 @@
-# Space-Expansion
+# Cosmic-Expansion
 Really simple game created in [Godot Game Engine](https://godotengine.org/). It's evolution of this tutorial game [link](https://www.youtube.com/watch?v=QoNukqpolS8) 
 
 ## Screenshot
 ![](Screenshot.png)
 
-## How install
-1. git --version # check version of github if nothing happen then you need to install git 
-- for debian based: sudo apt install git-all
-- for arch based: sudo pacman -S git
-- for fedora: sudo dnf install git
-2. git clone https://github.com/Chimi70/Space-Expansion
-3. cd Space-Expansion
-4. ls
-5. godot project.godot # run project
-6. cd export
-7. ls # list of versions
-8. cd here_version_number
-9. ls
-10. cd here_your_OS_or_web
-11. run executable
+## Linux
+### How install 
+```
+git clone https://github.com/Chimi70/Space-Expansion &&
+cd Cosmic-Expansion
+echo "#!/usr/bin/bash
+./export/0.2/linux/cosmic_expansion.x86_64" > launch.sh &&
+chmod +x launch.sh &&
+```
+### How launch
+```
+cd &&
+Cosmic-Expansion./launch.sh
+```
+### How Update to the newest version
+```
+cd &&
+sudo rm -r Cosmic-Expansion
+git clone https://github.com/Chimi70/Space-Expansion &&
+echo "#!/usr/bin/bash
+./export/0.2/linux/cosmic_expansion.x86_64" > launch.sh &&
+chmod +x launch.sh &&
+```
+### How uninstall
+```
+cd &&
+sudo rm -r Space-Expansion
+```
+## Windows
+### How install 
+1. Install git
+```winget install --id Git.Git -e --source winget```
+2. Go to Documents
+```cd C:\Users\YourUsername\Documents```
+3. Clone repo
+```git clone https://github.com/Chimi70/Space-Expansion```
 
-## How Update to the newest version
-1. uninstall
-3. git clone https://github.com/Chimi70/Space-Expansion
-
-## How uninstall
-1. cd
-2. sudo rm -r Space-Expansion
+### How launch
+```
+C:\Users\YourUsername\Documents\Cosmic-Expansion\0.2\win\cosmic_expansion.exe
+```
+### How Update to the newest version
+```cd C:\Users\YourUsername\Documents```
+```rmdir /s /q Cosmic-Expansion```
+```git clone https://github.com/Chimi70/Space-Expansion```
+### How uninstall
+```cd C:\Users\YourUsername\Documents```
+```rmdir /s /q Cosmic-Expansion```
 
 ## Commands
 1. Run specific turn, command example:
