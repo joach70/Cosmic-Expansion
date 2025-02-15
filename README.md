@@ -7,7 +7,7 @@ Really simple game created in [Godot Game Engine](https://godotengine.org/). It'
 ## Linux
 ### How install 
 ```
-git clone https://github.com/Chimi70/Space-Expansion &&
+git clone https://github.com/Chimi70/Cosmic-Expansion &&
 cd Cosmic-Expansion
 echo "#!/usr/bin/bash
 ./export/0.2/linux/cosmic_expansion.x86_64" > launch.sh &&
@@ -22,7 +22,7 @@ Cosmic-Expansion./launch.sh
 ```
 cd &&
 sudo rm -r Cosmic-Expansion
-git clone https://github.com/Chimi70/Space-Expansion &&
+git clone https://github.com/Chimi70/Cosmic-Expansion &&
 echo "#!/usr/bin/bash
 ./export/0.2/linux/cosmic_expansion.x86_64" > launch.sh &&
 chmod +x launch.sh &&
@@ -30,7 +30,7 @@ chmod +x launch.sh &&
 ### How uninstall
 ```
 cd &&
-sudo rm -r Space-Expansion
+sudo rm -r Cosmic-Expansion
 ```
 ## Windows
 ### How install 
@@ -40,7 +40,7 @@ sudo rm -r Space-Expansion
 3. Go to Documents
 ```cd C:\Users\YourUsername\Documents```
 4. Clone repo
-```git clone https://github.com/Chimi70/Space-Expansion```
+```git clone https://github.com/Chimi70/Cosmic-Expansion```
 
 ### How launch
 ```
@@ -50,7 +50,7 @@ cd Documents\Cosmic-Expansion\export\0.2\win
 ### How Update to the newest version
 ```cd C:\Users\YourUsername\Documents```
 ```rmdir /s /q Cosmic-Expansion```
-```git clone https://github.com/Chimi70/Space-Expansion```
+```git clone https://github.com/Chimi70/Cosmic-Expansion```
 ### How uninstall
 ```cd C:\Users\YourUsername\Documents```
 ```rmdir /s /q Cosmic-Expansion```
