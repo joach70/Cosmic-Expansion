@@ -1,5 +1,6 @@
 # Cosmic-Expansion
 Really simple game created in [Godot Game Engine](https://godotengine.org/). It's evolution of this tutorial game [link](https://www.youtube.com/watch?v=QoNukqpolS8) 
+Tested on: [Linux](https://github.com/Chimi70/Cosmic-Expansion?tab=readme-ov-file#linux) and [Windows](https://github.com/Chimi70/Cosmic-Expansion?tab=readme-ov-file#windows)
 
 ## Screenshot
 ![](Screenshot.png)
