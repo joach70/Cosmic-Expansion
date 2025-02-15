@@ -36,14 +36,16 @@ sudo rm -r Space-Expansion
 ### How install 
 1. Install git
 ```winget install --id Git.Git -e --source winget```
-2. Go to Documents
+2. Reopen PowerShell
+3. Go to Documents
 ```cd C:\Users\YourUsername\Documents```
-3. Clone repo
+4. Clone repo
 ```git clone https://github.com/Chimi70/Space-Expansion```
 
 ### How launch
 ```
-C:\Users\YourUsername\Documents\Cosmic-Expansion\0.2\win\cosmic_expansion.exe
+cd Documents\Cosmic-Expansion\export\0.2\win
+.\cosmic_expansion.exe
 ```
 ### How Update to the newest version
 ```cd C:\Users\YourUsername\Documents```
