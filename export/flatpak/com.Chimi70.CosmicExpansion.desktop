@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Cosmic Expansion
+Exec=/app/bin/cosmic_expansion.x86_64
+Icon=com.Chimi70.CosmicExpansion
+Terminal=false
+Categories=Game;
+
