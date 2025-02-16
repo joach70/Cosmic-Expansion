@@ -2,10 +2,16 @@
 Really simple game created in [Godot Game Engine](https://godotengine.org/). It's evolution of this tutorial game [link](https://www.youtube.com/watch?v=QoNukqpolS8) 
 
 ---
-Work on: [Linux](https://github.com/Chimi70/Cosmic-Expansion?tab=readme-ov-file#linux) and [Windows](https://github.com/Chimi70/Cosmic-Expansion?tab=readme-ov-file#windows)
+Work on: 
+- [Linux](https://github.com/Chimi70/Cosmic-Expansion?tab=readme-ov-file#linux)
+- [Windows](https://github.com/Chimi70/Cosmic-Expansion?tab=readme-ov-file#windows)
+- [In Browser](https://github.com/Chimi70/Cosmic-Expansion?tab=readme-ov-file#browser)
 
 ## Screenshot
 ![](Screenshot.png)
+
+## Browser
+link: https://chimi70.itch.io/cosmic-expansion
 
 ## Linux
 ### How install 
