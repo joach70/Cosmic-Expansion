@@ -1,27 +1,42 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvlbbugvuvcl2"]
+[gd_scene load_steps=10 format=3 uid="uid://dvlbbugvuvcl2"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_7ds8d"]
 [ext_resource type="Texture2D" uid="uid://ecobna3ik7yc" path="res://assets/PNG/playerShip1_blue.png" id="1_n2u3g"]
 [ext_resource type="AudioStream" uid="uid://gfffvxqboi4r" path="res://assets/Bonus/level_up.ogg" id="3_oupq8"]
+[ext_resource type="Texture2D" uid="uid://hpbamyb5m8jk" path="res://assets/PNG/Effects/shield3.png" id="3_rmrap"]
 [ext_resource type="AudioStream" uid="uid://b43selmjnn88p" path="res://assets/Bonus/sfx_shieldDown.ogg" id="4_c7hfd"]
 [ext_resource type="AudioStream" uid="uid://bocljp381ierl" path="res://assets/Bonus/sfx_shieldUp.ogg" id="4_svp72"]
+[ext_resource type="Texture2D" uid="uid://c4twm3dx7v33" path="res://assets/PNG/Effects/shield2.png" id="4_yto4q"]
+[ext_resource type="FontFile" uid="uid://cgnabov1h1k6n" path="res://assets/Bonus/kenvector_future.ttf" id="6_y1bxi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_drlsn"]
+font = ExtResource("6_y1bxi")
+font_size = 24
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 6
 motion_mode = 1
 script = ExtResource("1_7ds8d")
 autoshot = true
+god_mode = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Ship" type="Sprite2D" parent="."]
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_n2u3g")
+
+[node name="Shield" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_rmrap")
+
+[node name="HalfShield" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_yto4q")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2(0.7, 0.7)
 polygon = PackedVector2Array(-12.8571, -54.2857, -17.1429, -18.5714, -48.5714, 2.85714, -68.5714, -8.57143, -67.1429, 35.7143, -58.5714, 31.4286, -18.5714, 40, -11.4286, 51.4286, 8.57143, 52.8571, 18.5714, 38.5714, 50, 32.8571, 60, 28.5714, 64.2857, 34.2857, 67.1429, -7.14286, 52.8571, 4.28571, 14.2857, -17.1429, 12.8571, -54.2857)
 
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(0, -53)
 
 [node name="SFX" type="Node" parent="."]
 
@@ -34,3 +49,15 @@ stream = ExtResource("4_svp72")
 
 [node name="ShieldDown" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("4_c7hfd")
+
+[node name="Notes" type="Label" parent="."]
+visible = false
+offset_left = -408.0
+offset_top = -134.0
+offset_right = 409.0
+offset_bottom = -40.0
+text = "Shield is ..."
+label_settings = SubResource("LabelSettings_drlsn")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

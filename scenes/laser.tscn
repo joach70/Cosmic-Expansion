@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1gb07tvococx"]
+[gd_scene load_steps=8 format=3 uid="uid://b1gb07tvococx"]
 
 [ext_resource type="Texture2D" uid="uid://nedjimairs5l" path="res://assets/PNG/Lasers/laserRed01.png" id="1_482hl"]
 [ext_resource type="Script" path="res://scripts/laser.gd" id="1_gafow"]
+[ext_resource type="Texture2D" uid="uid://clpdyu2gtghu" path="res://assets/PNG/Lasers/laserBlue01.png" id="2_t3l5y"]
 [ext_resource type="AudioStream" uid="uid://cfpx35bveg5cf" path="res://assets/Bonus/sfx_laser1.ogg" id="3_p0rg6"]
 [ext_resource type="AudioStream" uid="uid://b7eeqplr0thhi" path="res://assets/Bonus/sfx_laser2.ogg" id="4_6xpgm"]
 [ext_resource type="AudioStream" uid="uid://cwc0xdh0jre0g" path="res://assets/Bonus/sfx_lose.ogg" id="5_6hq2p"]
@@ -14,10 +15,6 @@ height = 44.0
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_gafow")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_482hl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_jxhgp")
@@ -37,6 +34,18 @@ stream = ExtResource("4_6xpgm")
 
 [node name="ExpodeSound" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("5_6hq2p")
+
+[node name="Spreat2D" type="Node2D" parent="."]
+
+[node name="Red" type="Sprite2D" parent="Spreat2D"]
+visible = false
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_482hl")
+
+[node name="Blue" type="Sprite2D" parent="Spreat2D"]
+visible = false
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_t3l5y")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

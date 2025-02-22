@@ -12,11 +12,15 @@ var enemy_scenes3: Array[PackedScene] = [
 	preload("res://scenes/diver_enemy_3.tscn"),
 	preload("res://scenes/enemy_3.tscn"),
 	preload("res://scenes/enemy_shooting_3.tscn")]
+var enemy_scenes4: Array[PackedScene] = [
+	preload("res://scenes/diver_enemy_4.tscn"),
+	preload("res://scenes/enemy_4.tscn"),
+	preload("res://scenes/enemy_shooting_4.tscn")]
 var enemy_boss: Array[PackedScene] = [
 	preload("res://scenes/boss.tscn"),
 	preload("res://scenes/boss_2.tscn"),
 	preload("res://scenes/boss_3.tscn")]
-
+var friend = preload("res://scenes/friend.tscn")
 # Export
 # 1
 @export var turn1:int = 20 # enemy before first boss
@@ -30,6 +34,9 @@ var enemy_boss: Array[PackedScene] = [
 # 4
 @export var turn4 = 60 # enemy before first boss
 @export var wait_enemy4 = 1
+# 5
+@export var turn5 = 80 # enemy before first boss
+@export var wait_enemy5 = 1.2
 # All
 @export var wait_boss = 10 # time how long wait boss
 @export var turn = 1 # start level
@@ -37,6 +44,7 @@ var enemy_boss: Array[PackedScene] = [
 # On ready
 @onready var player_spawn_pos = $PlayerSpawnPos
 @onready var laser_container = $LaserContainer
+@onready var bomb_container = $BombContainer
 @onready var timer = $EnemySpawnTimer
 @onready var enemy_container = $EnemyContainer
 @onready var hud = $UILayer/HUD
@@ -56,6 +64,7 @@ var shield: String = "Active":
 	set(value):
 		shield = value
 		hud.shield = shield
+
 var high_score
 var scroll_speed = 100
 
@@ -94,9 +103,14 @@ func _ready():
 			player.level_up()
 	player.killed.connect(_on_player_killed)
 	spawner()
+	#spawn_friend()
 
 func _player_shield(text:String):
 	shield = text
+	if text == "Broken":
+		hud.color(Color(0.408, 0.871, 0.612))
+	else:
+		hud.color(Color(0.918, 0.514, 0.682))
 
 func spawner():
 	# Repeat Break
@@ -113,9 +127,12 @@ func spawner():
 	elif turn == 3:
 		repeat_value = turn3
 		wait_enemy = wait_enemy3
-	elif turn >= 3:
+	elif turn == 4:
 		repeat_value = turn4
 		wait_enemy = wait_enemy4
+	elif turn >= 4:
+		repeat_value = turn5
+		wait_enemy = wait_enemy5
 	for n in repeat_value:
 		var enemy = choose_random_enemy(turn)
 		spawn_enemy(enemy.instantiate())
@@ -158,15 +175,20 @@ func _on_laser_shot(type, laser_scene, location, start_rotation, y_movement:floa
 	laser_container.add_child(laser)
 	if type == "player":
 		laser.type = "player"
+		laser.blue.visible = true
+		if player.level >= 4:
+			laser.scale*=1.5
+			laser.speed *=1.5
 	if type == "enemy":
 		laser.type = "enemy"
+		laser.red.visible = true
 
 func choose_random_enemy(turn:int) -> PackedScene:
 	var enemy_scenes
 	if turn == 1: enemy_scenes = enemy_scenes1
 	elif turn == 2: enemy_scenes = enemy_scenes2
 	elif turn == 3: enemy_scenes = enemy_scenes3
-	elif turn >= 4: enemy_scenes = enemy_scenes3
+	elif turn >= 4: enemy_scenes = enemy_scenes4
 	else:
 		print("Error while spawning")
 		enemy_scenes = enemy_scenes1
@@ -189,12 +211,24 @@ func spawn_enemy(enemy) -> void:
 		# Teleport
 		if enemy.type == 4:
 			enemy.boss_dead.connect(_on_boss_killed)
+	elif enemy.level >= 4:
+		enemy.laser_shot.connect(_on_laser_shot)
+	elif enemy.type == 2:
+		enemy.bomb_spawn.connect(_enemy_bomb_spawn)
 
+func _enemy_bomb_spawn(bomb_scene,location):
+	var bomb = bomb_scene.instantiate()
+	bomb.global_position = location
+	bomb_container.add_child(bomb)
+	
 func _on_boss_killed():
 	print("Boss Desktroyed")
 	turn+=1
 	if player.alive:
 		player.level_up()
+		if player.level == 4:
+			pass
+			#spawn_friend()
 	spawner()
 
 func _on_enemy_killed(points):
@@ -216,3 +250,8 @@ func _on_player_killed():
 	save_game()
 	await get_tree().create_timer(1.5).timeout
 	gos.visible = true
+
+#func spawn_friend():
+	#friend.instantiate()
+	#friend.global_position = player_spawn_pos.global_position
+	#friend.laser_shot.connect(_on_laser_shot)

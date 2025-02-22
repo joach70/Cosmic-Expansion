@@ -3,6 +3,7 @@ class_name Enemy extends Area2D
 
 # give info about destryed enemy (player get points)
 signal killed(points)
+signal bomb_spawn()
 signal hit
 
 const laser_scene = preload("res://scenes/laser.tscn")
@@ -22,9 +23,13 @@ var boss_pos_y = [600,200]#[-300, -600]
 @onready var explode_sound = $SFX/ExpodeSound
 @onready var hit_sound = $SFX/HitSound
 @onready var teleport_sound = $SFX/Teleport
+@onready var bomb = preload("res://scenes/bomb.tscn")
+@onready var health_bar = $HealtBar
 
+var alive = true
 var is_waiting = true
 var is_shooting = false
+var use_bomb = false
 var speed: int
 var move = 100 # change direction
 var time_to_change_direction: float = 4
@@ -33,22 +38,37 @@ var hp: int
 var boss: bool = false
 var points: int
 var teleport: bool = false
+var bomb_break: float = 2
 
 func _ready() -> void:
 	setup_enemy()
 	# Routine
 	var stop:bool = true
 	var loop:int = 1
-	if !teleport and !is_shooting:
+	if !teleport and !is_shooting and !use_bomb:
 		stop = false
+	elif use_bomb:
+		var first = true
+		while stop:
+			if first:
+				await get_tree().create_timer(bomb_break/2).timeout
+				if alive: 
+					bomb_spawn.emit(bomb,global_position)
+					first= false
+			else:
+				await get_tree().create_timer(bomb_break).timeout
+				if alive: 
+					bomb_spawn.emit(bomb,global_position)
 	else:
 		while stop:
 			if teleport:
 				await get_tree().create_timer(1.5).timeout
-				teleport_func()
+				if alive: 
+					teleport_func()
 			if is_shooting:
 				await get_tree().create_timer(rate_of_fire).timeout
-				shoot()
+				if alive: 
+					shoot()
 
 func setup_enemy():
 	match type:
@@ -56,10 +76,16 @@ func setup_enemy():
 			hp = 2
 			points = 50
 			speed = 150
+			if level == 4:
+				is_shooting = true
 		2:
 			hp = 1
 			points = 100
 			speed = 300
+			if level >= 2:
+				use_bomb = true
+			if level == 4:
+				is_shooting = true
 		3:
 			hp = 2
 			points = 100
@@ -72,10 +98,16 @@ func setup_enemy():
 			speed = 0
 			is_shooting = true
 			teleport = true
+			health_bar.global_position += Vector2(0,-10) 
+			#health_bar.scale.y = 1.2
+			#health_bar.scale.x = 1.4
 		_:
 			error("Unknown Enemy Type", scene_file_path)
 	hp *= level
 	points *= level
+	$points_label.text = "+ "+str(points)
+	health_bar.max_value = hp
+	health_bar.value = hp
 
 func teleport_func():
 	var change:bool = false
@@ -130,10 +162,17 @@ func shoot():
 				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(30,-30),30, 0.8, -0.5)
 				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,-50),180, 1, 0)
 				laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(-30,-30),-30, 0.8, 0.5)
-				rotation += 5
+				#rotation += 5
 				await get_tree().create_timer(0.3).timeout
 	else:
 		laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,40),180, -1, 0)
+	if type == 3:
+		if level == 4:
+			laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(30,30),-210, -0.8, -0.5)
+			laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,50),180, -1, 0)
+			laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(-30,30),210, -0.8, 0.5)
+	elif is_shooting:
+		laser_shot.emit("enemy", laser_scene, muzzle.global_position+Vector2(0,50),180, -1, 0)
 
 func _physics_process(delta: float) -> void:
 	global_position.y += speed * delta
@@ -148,11 +187,16 @@ func _physics_process(delta: float) -> void:
 func die():
 	# Sound
 	# remove enemy
+	alive = false
+	$points_label.visible = true
+	$Sprite2D.visible = false
+	health_bar.visible = false
+	$CollisionPolygon2D.set_deferred("disabled", true)
+	speed = 0
 	if type == 4:
 		boss_dead.emit()
-		queue_free()
-	else:
-		queue_free()		
+	await get_tree().create_timer(1).timeout
+	queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
 	# Colision with player
@@ -163,6 +207,7 @@ func _on_body_entered(body: Node2D) -> void:
 func take_damage(amount):
 	hit_sound.play()
 	hp -= amount
+	health_bar.value -= amount
 	if hp <= 0:
 		killed.emit(points)
 		die()

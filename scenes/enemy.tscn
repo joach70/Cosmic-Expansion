@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://pi6t1vbiapt2"]
+[gd_scene load_steps=8 format=3 uid="uid://pi6t1vbiapt2"]
 
 [ext_resource type="Texture2D" uid="uid://dd4f8vk8wqpx" path="res://assets/PNG/Enemies/enemyBlack1.png" id="1_jri0m"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_oxu1i"]
 [ext_resource type="AudioStream" uid="uid://b7eeqplr0thhi" path="res://assets/Bonus/sfx_laser2.ogg" id="4_fxuw0"]
 [ext_resource type="AudioStream" uid="uid://cwc0xdh0jre0g" path="res://assets/Bonus/sfx_lose.ogg" id="5_6lxav"]
 [ext_resource type="AudioStream" uid="uid://8k3yjyx2mc4f" path="res://assets/Bonus/teleport.mp3" id="5_btvyx"]
+[ext_resource type="FontFile" uid="uid://bw84boy0b8fyh" path="res://assets/Bonus/kenvector_future_thin.ttf" id="6_wie47"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_037cs"]
+font = ExtResource("6_wie47")
+font_size = 20
 
 [node name="Enemy" type="Area2D"]
 collision_layer = 2
@@ -35,6 +40,40 @@ stream = ExtResource("4_fxuw0")
 
 [node name="Teleport" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("5_btvyx")
+
+[node name="points_label" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -11.0
+offset_right = 41.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+text = "+ 1000"
+label_settings = SubResource("LabelSettings_037cs")
+horizontal_alignment = 1
+
+[node name="HealtBar" type="ProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -50.0
+offset_right = 30.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+value = 100.0
+show_percentage = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

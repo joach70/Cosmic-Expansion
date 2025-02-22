@@ -9,12 +9,11 @@ class_name Laser extends Area2D
 @onready var laser_sound = $SFX/LaserSound
 @onready var hit_sound = $SFX/HitSound
 @onready var type: String
+@onready var red: Sprite2D = $Spreat2D/Red
+@onready var blue: Sprite2D = $Spreat2D/Blue
 
 func _ready() -> void:
-	if type == "player":
-		laser_sound.volume_db -=15
 	laser_sound.play()
- 
 	rotation_degrees = start_rotation
 
 func _physics_process(delta):
@@ -40,6 +39,8 @@ func _on_area_entered(area: Area2D) -> void:
 			# Only laser from diferent team will be explode
 			hit_sound.play()
 			area.queue_free()
+			$Spreat2D.visible = false
+			await hit_sound.finished
 			queue_free()
 
 func _on_body_entered(body: Node2D) -> void:
