@@ -88,4 +88,6 @@ position = Vector2(600, -600)
 [node name="Marker2D3" type="Marker2D" parent="markers"]
 position = Vector2(600, -300)
 
+[node name="BombContainer" type="Node2D" parent="."]
+
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

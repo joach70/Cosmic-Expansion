@@ -32,6 +32,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Shield" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -42,7 +43,7 @@ offset_left = -323.0
 offset_top = -70.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "Shield: Active"
+text = "Shield: status"
 label_settings = SubResource("LabelSettings_n3k0g")
 horizontal_alignment = 1
 vertical_alignment = 1

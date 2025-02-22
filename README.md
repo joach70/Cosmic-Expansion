@@ -42,28 +42,44 @@ cd &&
 sudo rm -r Cosmic-Expansion
 ```
 ## Windows
-### How install 
-1. Install git
-```winget install --id Git.Git -e --source winget```
-2. Reopen PowerShell
-3. Go to Documents
-```cd C:\Users\YourUsername\Documents```
-4. Clone repo
-```git clone https://github.com/Chimi70/Cosmic-Expansion```
+### How install (using PowerShell)
+-  Install git
+```
+winget install --id Git.Git -e --source winget
+```
+-  Reopen PowerShell
+-  Go to Documents
+```
+cd C:\Users\YourUsername\Documents
+```
+-  Clone repo
+```
+git clone https://github.com/Chimi70/Cosmic-Expansion
+```
 
-### How launch
+### How install (without PowerShell)
+- Download project (at the top of this page is green button "<>Code" click it then click "Download ZIP)
+- Unpack zip
+- In export directory is "win" directory, then click newest version, then click "Cosmic Expansion.exe"
+### How launch (cml)
 ```
 cd Documents\Cosmic-Expansion\export\0.2\win
 .\cosmic_expansion.exe
 ```
-### How Update to the newest version
-```cd C:\Users\YourUsername\Documents```
-```rmdir /s /q Cosmic-Expansion```
-```git clone https://github.com/Chimi70/Cosmic-Expansion```
-### How uninstall
-```cd C:\Users\YourUsername\Documents```
-```rmdir /s /q Cosmic-Expansion```
+### How Update to the newest version (cml)
+```
+cd C:\Users\YourUsername\Documents &
+rmdir /s /q Cosmic-Expansion &
+git clone https://github.com/Chimi70/Cosmic-Expansion
+```
+
+### How uninstall (cml)
+```cd C:\Users\YourUsername\Documents
+rmdir /s /q Cosmic-Expansion
+```
 
 ## Commands
 1. Run specific turn, command example:
+```
 ./game_file --turn=turn_number (choose number from 1 to 4)
+```
