@@ -83,3 +83,9 @@ rmdir /s /q Cosmic-Expansion
 ```
 ./game_file --turn=turn_number (choose number from 1 to 4)
 ```
+
+# What I use
+---
+- [code](https://www.youtube.com/watch?v=QoNukqpolS8)
+- [assets](https://kenney.nl/assets/space-shooter-redux)
+- [engine](https://godotengine.org/)
