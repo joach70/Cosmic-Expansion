@@ -4,4 +4,4 @@
 export/0.1/
 # Ignore zip files
 *.zip
-export/0.3/cosmic_expansion.zip
+/export/0.3/cosmic_expansion.zip
