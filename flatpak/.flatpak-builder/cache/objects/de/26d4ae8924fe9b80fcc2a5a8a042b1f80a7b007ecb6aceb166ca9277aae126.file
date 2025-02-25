@@ -1,0 +1,10 @@
+[Application]
+name=io.github.Chimi70.cosmic_expansion
+runtime=org.freedesktop.Platform/x86_64/23.08
+sdk=org.freedesktop.Sdk/x86_64/23.08
+command=/app/bin/cosmic_expansion.x86_64
+
+[Context]
+shared=network;
+sockets=x11;wayland;pulseaudio;
+devices=dri;

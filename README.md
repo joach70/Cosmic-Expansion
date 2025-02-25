@@ -78,14 +78,17 @@ git clone https://github.com/Chimi70/Cosmic-Expansion
 rmdir /s /q Cosmic-Expansion
 ```
 
-## Commands
+## Launch commands 
 1. Run specific turn, command example:
 ```
-./game_file --turn=turn_number (choose number from 1 to 4)
+./game_file --turn=[1-4] #(choose number from 1 to 4)
 ```
-
 # What I use
 ---
 - [code](https://www.youtube.com/watch?v=QoNukqpolS8)
 - [assets](https://kenney.nl/assets/space-shooter-redux)
 - [engine](https://godotengine.org/)
+
+# License
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0).  
+See the [LICENSE](LICENSE) file for details.
