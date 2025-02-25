@@ -2,3 +2,5 @@
 .godot/
 /android/
 export/0.1/
+# Ignore zip files
+*.zip
