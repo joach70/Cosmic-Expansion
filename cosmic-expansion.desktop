@@ -2,7 +2,8 @@
 Version=1.0
 Type=Application
 Name=Cosmic Expansion
-Exec=/app/bin/cosmic-expansion.x86_64
+#Exec=/app/bin/cosmic-expansion.x86_64
+Exec=godot-runner /app/bin/cosmic_expansion.pck
 Icon=io.github.chimi70.cosmic-expansion
 Terminal=false
 Categories=Game;
