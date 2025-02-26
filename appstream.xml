@@ -4,9 +4,14 @@
   <name>Cosmic Expansion</name>
   <summary>A space 2D shooter game</summary>
   <description>
-    Cosmic Expansion - really simple game (2D space shooter)
+  Cosmic Expansion is an exciting 2D space shooter where you take on the role of a seasoned space pilot tasked with destroying waves of enemy spaceships. As you complete challenging levels, your goal is to defeat as many enemies as possible while avoiding enemy fire and mines.
+
+  As you progress through the game, you will face off against powerful bosses that guard each stage. Defeating them upgrades your weapons, making you even stronger and ready to face the next wave of increasingly difficult enemies. With each new stage, the difficulty increases, offering exciting, action-packed gameplay.
+
+  With fast-paced combat, challenging levels, and rewarding upgrades, Cosmic Expansion offers a fun and engaging space shooter experience for fans of classic arcade-style games.
   </description>
   <developer_name>Chimi70</developer_name>
+  <metadata_license>GPL-3.0-only</metadata_license>
   <project_license>GPL-3.0-only</project_license>
   <url type="homepage">https://github.com/chimi70/cosmic-expansion</url>
   <icon type="svg">io.github.chimi70.cosmic-expansion.svg</icon>
@@ -17,7 +22,7 @@
     </branding>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/refs/heads/main/screenshots/Screenshot.png</image>
+      <image>https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/aa216dabaa7e8bf18b37c11ece1803272984adc3/screenshots/screenshot_1.png</image>
     </screenshot>
   <screenshots>
   <categories>
