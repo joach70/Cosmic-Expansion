@@ -8,7 +8,7 @@ Work on:
 - [In Browser](https://github.com/Chimi70/Cosmic-Expansion?tab=readme-ov-file#browser)
 
 ## Screenshot
-![](Screenshot.png)
+![](/screenshots/Screenshot.png)
 
 ## Browser
 link: https://chimi70.itch.io/cosmic-expansion
