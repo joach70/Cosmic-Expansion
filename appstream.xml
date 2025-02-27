@@ -4,27 +4,73 @@
   <name>Cosmic Expansion</name>
   <summary>A space 2D shooter game</summary>
   <description>
-  Cosmic Expansion is an exciting 2D space shooter where you take on the role of a seasoned space pilot tasked with destroying waves of enemy spaceships. As you complete challenging levels, your goal is to defeat as many enemies as possible while avoiding enemy fire and mines.
-
-  As you progress through the game, you will face off against powerful bosses that guard each stage. Defeating them upgrades your weapons, making you even stronger and ready to face the next wave of increasingly difficult enemies. With each new stage, the difficulty increases, offering exciting, action-packed gameplay.
-
-  With fast-paced combat, challenging levels, and rewarding upgrades, Cosmic Expansion offers a fun and engaging space shooter experience for fans of classic arcade-style games.
+    <p>
+      Cosmic Expansion is an exciting 2D space shooter where you take on the role of a seasoned space pilot tasked with destroying waves of enemy spaceships. Your goal is to defeat as many enemies as possible while avoiding enemy fire and mines.
+    </p>
+    <p>
+      As you progress through the game, you will face off against powerful bosses that guard each stage. Defeating them upgrades your weapons, making you even stronger and ready to face the next wave of increasingly difficult enemies.
+    </p>
+    <p>
+      Features:
+    </p>
+    <ul>
+      <li>Fast-paced space combat</li>
+      <li>Challenging enemy waves and powerful bosses</li>
+      <li>Weapon upgrades after each boss fight</li>
+      <li>Classic arcade-style shooter gameplay</li>
+    </ul>
+    <p>
+      With action-packed levels and rewarding progression, Cosmic Expansion delivers a fun and engaging space shooter experience for fans of retro arcade games.
+    </p>
   </description>
   <developer_name>Chimi70</developer_name>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
-  <url type="homepage">https://github.com/chimi70/cosmic-expansion</url>
-  <icon type="svg">io.github.chimi70.cosmic-expansion.svg</icon>
+  <url type="homepage">https://github.com/Chimi70/Cosmic-Expansion</url>
+  <icon type="cached" width="256" height="256">io.github.chimi70.cosmic-expansion.svg</icon>
   <launchable type="desktop-id">io.github.chimi70.cosmic-expansion.desktop</launchable>
   <branding>
     <color type="primary" scheme_preference="light">#af7faf</color>
     <color type="primary" scheme_preference="dark">#a599a5</color>
-    </branding>
+  </branding>
+
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0c89be4294031e1aadbae5f62447e2944344a7ed/screenshots/screenshot_1.png</image>
+      <caption>First stage - gameplay screenshot.</caption>
+      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/screenshot_1.png</image>
+      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/thumbnails/screenshot_1_large.png</image>
+      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/thumbnails/screenshot_1_small.png</image>
     </screenshot>
-  <screenshots>
+  
+    <screenshot>
+      <caption>Second stage - gameplay screenshot</caption>
+      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/screenshot_2.png</image>
+      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/thumbnails/screenshot_2_large.png</image>
+      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/thumbnails/screenshot_2_small.png</image>
+    </screenshot>
+  
+    <screenshot>
+      <caption>Third stage - gameplay screenshot nr 1.</caption>
+      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/screenshot_3.png</image>
+      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/thumbnails/screenshot_3_large.png</image>
+      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/thumbnails/screenshot_3_small.png</image>
+    </screenshot>
+  
+    <screenshot>
+      <caption>Third stage - gameplay screenshot nr 2.</caption>
+      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/screenshot_4.png</image>
+      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/thumbnails/screenshot_4_large.png</image>
+      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/thumbnails/screenshot_4_small.png</image>
+    </screenshot>
+
+    <screenshot>
+      <caption>Game over screen.</caption>
+      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/screenshot_5.png</image>
+      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/thumbnails/screenshot_5_large.png</image>
+      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/main/screenshots/thumbnails/screenshot_5_small.png</image>
+    </screenshot>
+  </screenshots>
+ 
   <categories>
     <category>Game</category>
     <category>Action</category>
@@ -38,6 +84,7 @@
   <releases>
     <release version="0.3" date="2025-02-23">
       <description>Initial release of Cosmic Expansion</description>
+      <url type="details">https://github.com/Chimi70/Cosmic-Expansion/releases/tag/v0.3</url>
     </release>
   </releases>
 </component>
