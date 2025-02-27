@@ -27,7 +27,6 @@
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
   <url type="homepage">https://github.com/Chimi70/Cosmic-Expansion</url>
-  <icon type="cached" width="256" height="256">io.github.chimi70.cosmic-expansion.svg</icon>
   <launchable type="desktop-id">io.github.chimi70.cosmic-expansion.desktop</launchable>
   <branding>
     <color type="primary" scheme_preference="light">#af7faf</color>
