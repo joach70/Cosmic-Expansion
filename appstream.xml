@@ -23,10 +23,10 @@
       With action-packed levels and rewarding progression, Cosmic Expansion delivers a fun and engaging space shooter experience for fans of retro arcade games.
     </p>
   </description>
-  <developer_name>Chimi70</developer_name>
+  <developer_name>Joachim70</developer_name>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
-  <url type="homepage">https://github.com/Chimi70/Cosmic-Expansion</url>
+  <url type="homepage">https://github.com/joach70/Cosmic-Expansion</url>
   <launchable type="desktop-id">io.github.chimi70.cosmic-expansion.desktop</launchable>
   <branding>
     <color type="primary" scheme_preference="light">#af7faf</color>
@@ -36,37 +36,37 @@
   <screenshots>
     <screenshot type="default">
       <caption>First stage - gameplay screenshot.</caption>
-      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/screenshot_1.png</image>
-      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_1_large.png</image>
-      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_1_small.png</image>
+      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/screenshot_1.png</image>
+      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_1_large.png</image>
+      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_1_small.png</image>
     </screenshot>
   
     <screenshot>
       <caption>Second stage - gameplay screenshot</caption>
-      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/screenshot_2.png</image>
-      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_2_large.png</image>
-      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_2_small.png</image>
+      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/screenshot_2.png</image>
+      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_2_large.png</image>
+      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_2_small.png</image>
     </screenshot>
   
     <screenshot>
       <caption>Third stage - gameplay screenshot nr 1.</caption>
-      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/screenshot_3.png</image>
-      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_3_large.png</image>
-      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_3_small.png</image>
+      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/screenshot_3.png</image>
+      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_3_large.png</image>
+      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_3_small.png</image>
     </screenshot>
   
     <screenshot>
       <caption>Third stage - gameplay screenshot nr 2.</caption>
-      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/screenshot_4.png</image>
-      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_4_large.png</image>
-      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_4_small.png</image>
+      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/screenshot_4.png</image>
+      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_4_large.png</image>
+      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_4_small.png</image>
     </screenshot>
 
     <screenshot>
       <caption>Game over screen.</caption>
-      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/screenshot_5.png</image>
-      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_5_large.png</image>
-      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/Chimi70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_5_small.png</image>
+      <image type="source" width="2560" height="1440">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/screenshot_5.png</image>
+      <image type="thumbnail" width="752" height="423">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_5_large.png</image>
+      <image type="thumbnail" width="112" height="63">https://raw.githubusercontent.com/joach70/Cosmic-Expansion/0584f9f7ffd7e16452b1e9d9af5d36aa55e43247/screenshots/thumbnails/screenshot_5_small.png</image>
     </screenshot>
   </screenshots>
  
@@ -85,7 +85,7 @@
   <releases>
     <release version="0.3" date="2025-02-23">
       <description>Initial release of Cosmic Expansion</description>
-      <url type="details">https://github.com/Chimi70/Cosmic-Expansion/releases/tag/v0.3</url>
+      <url type="details">https://github.com/joach70/Cosmic-Expansion/releases/tag/v0.3</url>
     </release>
   </releases>
 </component>
